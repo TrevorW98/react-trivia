@@ -1,27 +1,51 @@
-import './App.css';
-import FetchJSON from './components/Services/data2';
-import BtnComp from './components/Button/btnComp'
-import { Container, Row, Col } from 'react-bootstrap';
-function App() {
+import { React } from 'react';
+import FetchGoogle from './components/Services/dataService';
+import BtnComp from './components/Button/btnComp';
+import { Col, Container, Row } from 'react-bootstrap';
+const url_pt1 = "https://spreadsheets.google.com/feeds/list/";
+const apiKey = "1Mc3CxMCREE6A8O6NxJl-THcyYN-_cEkbZ5Pk2Vw6SYU/";
+let easyMedHard = "1";
+const url_pt2 = "/public/full?alt=json";
+let questionData;
+let url = (url_pt1 + apiKey + easyMedHard + url_pt2);
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      triviaQ: "",
+      asw1: "",
+      asw2: "",
+      asw3: "",
+      asw4: "",
+      aswC: "",
+      diff: 0
+    }
+    
+  }
+HandleClickDifficulty = () => {
+  
+}
+onLoad = async () => {
+  questionData = await FetchGoogle(url);
+  console.log(questionData);
+}
+componentDidMount = () => {
+  this.onLoad();
+}
+
+render() {
   return (
-    <html>
-      <head>
-      </head>
-      <body>
-        <Container >
-          <Row>
-            <Col>
-              <BtnComp onClick={HandleClick} message={"Push this"} />
-            </Col>
-          </Row>
-        </Container>
-      </body>
-    </html>
-  );
+      <Container>
+        <Row>
+          <Col>
+          <BtnComp message={1} />
+          <BtnComp message={2} />
+          <BtnComp message={3} />
+          </Col>
+        </Row>
+      </Container>
+  )
 }
-async function HandleClick() {
-  //JSON format allows for the grabbing of the value of the fetch, or whatever inner info you need
-  let jsonFormat = await FetchJSON("https://spreadsheets.google.com/feeds/list/1MKPxRE7xn7l2zj3N3vX2jSi0ZH2aOVwr_hj5-bPrekA/1/public/full?alt=json");
-  console.log(jsonFormat.feed.entry[1].gsx$answer1.$t);
 }
+
 export default App;

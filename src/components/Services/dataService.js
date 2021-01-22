@@ -1,4 +1,5 @@
-function FetchJSON(url){
+
+const FetchGoogle = (url) => {
     return fetch(url).then(
         resp => resp.json()
     ).catch (
@@ -6,4 +7,5 @@ function FetchJSON(url){
     )
 }
 
-export default  FetchJSON
+
+export default FetchGoogle;
