@@ -1,10 +1,9 @@
 import { Button } from 'react-bootstrap';
 
-const BtnComp = (anything) => {
-    const handleClickEvent = () => anything.onClick(anything.message)
+const BtnComp = () => {
     return (
-        <Button variant="dark" onClick={handleClickEvent}>
-            {anything.message}
+        <Button variant="dark">
+            
         </Button>
     )
 }

@@ -1,51 +1,39 @@
-import { React } from 'react';
-import FetchGoogle from './components/Services/dataService';
-import BtnComp from './components/Button/btnComp';
+import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import { Col, Container, Row } from 'react-bootstrap';
-const url_pt1 = "https://spreadsheets.google.com/feeds/list/";
-const apiKey = "1Mc3CxMCREE6A8O6NxJl-THcyYN-_cEkbZ5Pk2Vw6SYU/";
-let easyMedHard = "1";
-const url_pt2 = "/public/full?alt=json";
-let questionData;
-let url = (url_pt1 + apiKey + easyMedHard + url_pt2);
+import NavBar from './components/navbar/navbar';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      triviaQ: "",
-      asw1: "",
-      asw2: "",
-      asw3: "",
-      asw4: "",
-      aswC: "",
-      diff: 0
+      // triviaQ: "",
+      // asw1: "",
+      // asw2: "",
+      // asw3: "",
+      // asw4: "",
+      // aswC: "",
+      // diffSet: false,
+      // difficulty: "",
+      // arr: [],
+      // fullURL: ""
     }
-    
-  }
-HandleClickDifficulty = () => {
-  
-}
-onLoad = async () => {
-  questionData = await FetchGoogle(url);
-  console.log(questionData);
-}
-componentDidMount = () => {
-  this.onLoad();
-}
 
-render() {
-  return (
-      <Container>
+  }
+
+  render() {
+    return (
+      <Container fluid className="pageBG">
         <Row>
           <Col>
-          <BtnComp message={1} />
-          <BtnComp message={2} />
-          <BtnComp message={3} />
+            <NavBar />
           </Col>
         </Row>
       </Container>
-  )
-}
+    )
+  }
 }
 
 export default App;
+
