@@ -1,0 +1,33 @@
+body{
+    background-color: #111e33;
+  }
+  .center{
+    display: flex;
+    justify-content: center;
+  }
+  .startBtn{
+    background-color: #2d5b97;
+    padding: 0px;
+    text-align: center;
+    font-size: 25px;
+    height: 80px;
+    width: 400px;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  .answerBtn{
+    background-color: #242423;
+    padding: 0px;
+    text-align: center;
+    font-size: 25px;
+    height: 100px;
+    width: 600px;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  .timerStyle{
+    font-size: 40px;
+    color: white;
+}
