@@ -1,35 +1,37 @@
 import React from 'react';
 import '../Questions/questions.css'
+import {restartTimer} from '../Questions/questions'
 let end = false;
-
 class Timer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            seconds: 20
-            
+            seconds: 20,
+            restart: false
+
         }
     }
     componentDidMount() {
         this.myInterval = setInterval(() => {
+            this.setState({restart: restartTimer()})
+            if(this.state.restart === true) {
+                this.setState({ seconds: 21 })
+            } 
             if (this.state.seconds > 0) {
                 end = false
                 this.setState(({ seconds }) => ({
                     seconds: seconds - 1
                 }))
-               console.log(end)
             } else if (this.state.seconds === 0) {
-                console.log(end)
                 end = true
-               this.secondInterval = setInterval(() => {
-                    this.setState({seconds: 20})
-                    end = false
-               }, 500)
+                this.setState({ seconds: 20 })
             }
-           
         }, 1000)
     }
-   
+    componentWillUnmount = () => {
+        clearInterval(this.myInterval);
+    }
+
     render() {
         return (
             <div className="timerStyle">
@@ -42,4 +44,4 @@ function getEnd() {
     return end;
 }
 
-export {Timer, getEnd }
+export { Timer, getEnd }

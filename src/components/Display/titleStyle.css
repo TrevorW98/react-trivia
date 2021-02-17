@@ -1,0 +1,9 @@
+.pageBG{
+    background-color: #0C0A3E;
+  }
+.text{
+    color: white;
+    display: flex;
+    justify-content: center;
+    font-size: 35px;
+}

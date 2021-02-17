@@ -2,10 +2,11 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './styles.css'
 import { Col, Container, Row } from 'react-bootstrap'
-import Title from '../Title/title'
+import Display from '../Display/display'
 import { FetchEasy, FetchMed, FetchHard } from '../Services/dataService'
 import { Questions } from '../Questions/questions'
-import Options from '../options/options';
+import {Options} from '../Options/options';
+import But from '../Button/btn'
 import {
   BrowserRouter as Router,
   Switch,
@@ -62,23 +63,28 @@ class App extends React.Component {
             </Route>
             <Route path="/">
               <Container>
-                <Row>
-                  <Col>
-                    <Title className="d-flex justify-content-center" />
+                <Row >
+                  <Col className={"d-flex justify-content-center mt-5"}>
+                    <Display className="timerStyle" message={"Welcome to Animal Trivia!"}/>
                   </Col>
                 </Row>
                 <Row>
-                  <Col className="d-flex justify-content-center">
-                    <Link to="/questions"><button onClick={asyncFunctionEasy} className="startBtn">Easy</button></Link>
+                  <Col className={"d-flex justify-content-center mt-5"}>
+                  <Display className={"timerStyle text-center"} message={"Choose from Easy, household pet facts, Medium, exotic pet facts, or Hard, wild animal facts."}></Display>
                   </Col>
-                  <Col className="d-flex justify-content-center">
-                    <Link to="/questions"><button onClick={asyncFunctionMed} className="startBtn">Medium</button></Link>
+                </Row>
+                <Row>
+                  <Col className="d-flex justify-content-center mt-5">
+                    <Link to="/questions"><But onClick={asyncFunctionEasy} className="startBtn" message={"Easy"}></But></Link>
                   </Col>
-                  <Col className="d-flex justify-content-center">
-                    <Link to="/questions"><button onClick={asyncFunctionHard} className="startBtn">Hard</button></Link>
+                  <Col className="d-flex justify-content-center mt-5">
+                    <Link to="/questions"><But onClick={asyncFunctionMed} className="startBtn" message={"Medium"}></But></Link>
                   </Col>
-                  <Col className="d-flex justify-content-center">
-                    <Link to="/options"><button className="startBtn">Options</button></Link>
+                  <Col className="d-flex justify-content-center mt-5">
+                    <Link to="/questions"><But onClick={asyncFunctionHard} className="startBtn" message={"Hard"}></But></Link>
+                  </Col>
+                  <Col className="d-flex justify-content-center mt-5">
+                    <Link to="/options"><But className="startBtn"  message={"Options"}></But></Link>
                   </Col>
                 </Row>
               </Container>

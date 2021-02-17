@@ -9,20 +9,17 @@ import Game from '../Game/game';
 import './results.css'
 import { finalScore } from '../Questions/questions';
 import { Container, Row, Col } from 'react-bootstrap';
-let score;
+import But from '../Button/btn'
 
 class Results extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            score: 0
         }
     }
     componentDidMount() {
-        score = finalScore();
-    }
-    componentWillUnmount() {
-        clearInterval(this.newInterval)
+        this.setState({score: finalScore()})
     }
     render() {
         return (
@@ -35,14 +32,14 @@ class Results extends React.Component {
                             <Container fluid>
                                 <Row>
                                     <Col>
-                                        <p className="timerStyle">
-                                            You made {score} points!
+                                        <p className="timerStyle d-flex justify-content-center mt-5">
+                                            Congratulations! You made {this.state.score} out of 20 points!
                                         </p>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col>
-                                        <Link to="/game"><button className="answerBtn d-flex justify-content-center" >Restart Game</button></Link>
+                                <Row >
+                                    <Col className="d-flex justify-content-center mt-5">
+                                        <Link to="/game"><But className="answerBtn" message={"Restart Game"}></But></Link>
                                     </Col>
                                 </Row>
                             </Container>

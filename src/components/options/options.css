@@ -1,0 +1,26 @@
+.answerBtn{
+    background-color: #242423;
+    padding: 0px;
+    text-align: center;
+    font-size: 25px;
+    height: 100px;
+    width: 600px;
+    color: white;
+    font-weight: bold;
+    border: none;
+  }
+  .timerStyle{
+      font-size: 40px;
+      color: white;
+  }
+  .songBtn{
+    background-color: #c23760;
+    padding: 0px;
+    text-align: center;
+    font-size: 18px;
+    height: 100px;
+    width: 400px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    border: none;
+  }

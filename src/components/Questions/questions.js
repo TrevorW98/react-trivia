@@ -10,9 +10,12 @@ import { getValue } from '../Services/dataService'
 import { Timer, getEnd } from '../Clock/timer';
 import './questions.css'
 import Results from '../Results/results';
+import But from '../Button/btn'
+import Display from '../Display/display'
 let end = false;
 let q;
 let score = 0;
+let resetTimerOnClick = false;
 
 class Questions extends React.Component {
     constructor(props) {
@@ -20,7 +23,7 @@ class Questions extends React.Component {
         this.state = {
             qArr: [],
             isReady: false,
-            end: false,
+            stop: false,
             idx: 0,
             victoryCount: 0,
             isLoaded: false
@@ -29,37 +32,38 @@ class Questions extends React.Component {
 
     componentDidMount = () => {
         q = getValue();
-        console.log("q +" + q);
         this.setState({ qArr: q })
         setTimeout(() => {
             this.setState({ isReady: true })
         }, 1000)
-        this.myInterval = setInterval(() => {
-            end = getEnd();
-            console.log(end)
+        this.firstInterval = setInterval(() => {
             score = this.state.victoryCount;
+            resetTimerOnClick = false;
+            end = getEnd();
             if (end === true) {
                 this.setState({ idx: this.state.idx + 1 })
+               
             }
         }, 1000)
     }
     componentWillUnmount = () => {
-        clearInterval(this.myInterval)
+        clearInterval(this.firstInterval);
     }
 
     clickValidate = (props) => {
-      
-            if (this.state.idx === 20) {
-                this.setState({ end: true })
-            }
-            else if (props.target.value === this.state.qArr[this.state.idx].ca) {
-                this.setState({ idx: this.state.idx + 1, victoryCount: this.state.victoryCount + 1 })
-            } else {
-                this.setState({ idx: this.state.idx + 1 })
-            }
-       
+        if (this.state.idx === 20) {
+            this.setState({ stop: true, isReady: false })
+        }
+        else if (props.target.value === this.state.qArr[this.state.idx].ca) {
+            this.setState({ idx: this.state.idx + 1, victoryCount: this.state.victoryCount + 1 })
+            resetTimerOnClick = true;
+        } else {
+            this.setState({ idx: this.state.idx + 1 })
+            resetTimerOnClick = true;
+        }
+        console.log(this.state.victoryCount)
+
     }
-    
 
     render() {
         return (
@@ -69,12 +73,12 @@ class Questions extends React.Component {
                     </Link>
                     <Switch>
                         <Route path="/questions">
-                            {this.state.end ?
+                            {this.state.stop ?
                                 <>
                                     <Container fluid>
                                         <Row>
                                             <Col>
-                                                <Link to="/results"><button className="answerBtn d-flex justify-content-center" >View your results!</button></Link>
+                                                <Link to="/results"><But className="answerBtn d-flex justify-content-center" message={"View your results!"}></But></Link>
                                             </Col>
                                         </Row>
                                     </Container>
@@ -83,24 +87,24 @@ class Questions extends React.Component {
                                 <>
                                     <Container fluid>
                                         <Row>
-                                            <Col className="d-flex justify-content-center timerStyle">
-                                                {this.state.isReady ? <h1>{this.state.qArr[this.state.idx].question}</h1> : ""}
+                                            <Col className="d-flex justify-content-center timerStyle mt-5">
+                                                {this.state.isReady ? <Display message={this.state.qArr[this.state.idx].question}></Display> : ""}
                                             </Col>
                                         </Row>
                                         <Row className="mt-5 mb-5">
                                             <Col className="d-flex justify-content-center">
-                                                {this.state.isReady ? <button className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a1}> {this.state.qArr[this.state.idx].a1}</button> : ""}
+                                                {this.state.isReady ? <But className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a1} message={this.state.qArr[this.state.idx].a1}></But> : ""}
                                             </Col >
                                             <Col className="d-flex justify-content-center">
-                                                {this.state.isReady ? <button className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a2}> {this.state.qArr[this.state.idx].a2}</button> : ""}
+                                                {this.state.isReady ? <But className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a2} message={this.state.qArr[this.state.idx].a2}></But> : ""}
                                             </Col>
                                         </Row>
                                         <Row className="mt-5">
                                             <Col className="d-flex justify-content-center">
-                                                {this.state.isReady ? <button className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a3}> {this.state.qArr[this.state.idx].a3}</button> : ""}
+                                                {this.state.isReady ? <But className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a3} message={this.state.qArr[this.state.idx].a3}> </But> : ""}
                                             </Col>
                                             <Col className="d-flex justify-content-center">
-                                                {this.state.isReady ? <button className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a4}> {this.state.qArr[this.state.idx].a4}</button> : ""}
+                                                {this.state.isReady ? <But className="answerBtn" onClick={this.clickValidate} value={this.state.qArr[this.state.idx].a4} message={this.state.qArr[this.state.idx].a4}> </But> : ""}
                                             </Col>
                                         </Row>
                                         <Row>
@@ -131,5 +135,8 @@ class Questions extends React.Component {
 function finalScore() {
     return score;
 }
+function restartTimer() {
+    return resetTimerOnClick;
+}
 
-export { Questions, finalScore }
+export { Questions, finalScore, restartTimer }

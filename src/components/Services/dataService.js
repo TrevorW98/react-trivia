@@ -30,7 +30,6 @@ function FetchEasy() {
             shuffledArr.push(value[randomIdx])
             value.splice(randomIdx, 1)
         }
-        console.log(shuffledArr)
     })
 }
 
