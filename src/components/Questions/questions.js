@@ -77,8 +77,8 @@ class Questions extends React.Component {
                                 <>
                                     <Container fluid>
                                         <Row>
-                                            <Col>
-                                                <Link to="/results"><But className="answerBtn d-flex justify-content-center" message={"View your results!"}></But></Link>
+                                            <Col className="d-flex justify-content-center mt-5">
+                                                <Link to="/results"><But className="answerBtn" message={"View your results!"}></But></Link>
                                             </Col>
                                         </Row>
                                     </Container>

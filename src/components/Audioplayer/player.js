@@ -11,26 +11,23 @@ import Song9 from '../AudioFiles/song9.mp3';
 import Song10 from '../AudioFiles/song10.mp3';
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap'
-import {getSong} from '../Options/options'
+import { getSong } from '../Options/options'
+import Display from '../Display/display'
+import './audiotitle.css'
+
 
 let songList = [Song1, Song2, Song3, Song4, Song5, Song6, Song7, Song8, Song9, Song10]
 class Player extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            autoplay: true
+            idx: 0
         }
     }
-    componentDidMount() {
-        this.songID = setInterval(() => {
-            this.playMusic()
+    componentDidMount = () => {
+        this.newInterval = setInterval(() => {
+            this.setState({idx : getSong()})
         }, 1000)
-    }
-    playMusic(){
-        this.setState({autoplay: true})
-    }
-    componentWillUnmount(){
-        clearInterval(this.songID)
     }
 
     render() {
@@ -38,8 +35,13 @@ class Player extends React.Component {
             <>
                 <Container>
                     <Row>
-                        <Col className="d-flex justify-content-center mt-5">
-                            <ReactAudioPlayer src={songList[getSong()]} controls autoPlay={true} volume={0.25} />
+                        <Col className="d-flex justify-content-center mt-5 whiteText">
+                            <Display message={"Push play to start music, or head to options to choose a different song!"}></Display>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col className="d-flex justify-content-center">
+                            <ReactAudioPlayer src={songList[this.state.idx]} controls autoPlay volume={0.25} />
                         </Col>
                     </Row>
                 </Container>
