@@ -33,10 +33,10 @@ body{
     border-radius: 15px;
   }
   .timerStyle{
-    font-size: 40px;
-    color: white;
+    font-size: 60px;
+    color: rgb(0, 0, 0);
 }
 .final{
   font-size: 30px;
-    color: white;
+    color: rgb(0, 0, 0);
 }

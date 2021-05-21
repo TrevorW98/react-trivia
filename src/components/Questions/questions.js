@@ -114,7 +114,7 @@ class Questions extends React.Component {
                                         </Row>
                                         <Row>
                                             <Col className="d-flex justify-content-center timerStyle">
-                                                {this.state.isReady ? <p> {this.state.victoryCount} </p> : ""}
+                                                {this.state.isReady ? <p> Score: {this.state.victoryCount} </p> : ""}
                                             </Col>
                                         </Row>
                                     </Container>

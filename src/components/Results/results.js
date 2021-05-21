@@ -63,8 +63,8 @@ class Results extends React.Component {
                                         <But className="startBtn text-center" message={"https://www.worldwildlife.org/"} onClick={linkTwo}></But>
                                     </Col>
                                 </Row>
-                                <Row >
-                                    <Col className="d-flex justify-content-center mt-5">
+                                <Row className="center">
+                                    <Col lg={6} className="d-flex justify-content-center mt-5">
                                         <Link to="/game"><But className="answerBtn" message={"Restart Game"}></But></Link>
                                     </Col>
                                 </Row>
