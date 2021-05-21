@@ -24,6 +24,12 @@ class Results extends React.Component {
         this.setState({ score: finalScore() })
     }
     render() {
+        const linkOne = () =>{
+            window.location.href = "https://www.endangered.org/15-ways-to-help-protect-endangered-species/"
+        }
+        const linkTwo = () =>{
+            window.location.href = "https://www.worldwildlife.org/"
+        }
         return (
             <>
                 <Router>
@@ -41,7 +47,7 @@ class Results extends React.Component {
                                 </Row>
                                 <Row>
                                     <Col className="d-flex justify-content-center mt-5">
-                                        <Display className="final text-center" message="Every year we lose multiple species of animals due to factors such as pollution and deforestation. There are ways to help and learn more, see the links below for more information"></Display>
+                                        <Display className="final text-center" message="Every year we lose multiple species of animals due to human caused factors such as pollution and deforestation. There are ways to help and learn more, see the links below for more information"></Display>
                                     </Col>
                                 </Row>
                                 <Row>
@@ -49,12 +55,12 @@ class Results extends React.Component {
                                         <img src={Image} alt={"A panda"}></img>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col>
-                                        <Display className="final text-center" message={"https://www.endangered.org/15-ways-to-help-protect-endangered-species/"}></Display>
+                                <Row className="mt-5">
+                                    <Col className="center">
+                                        <But className="startBtn text-center" message={"Endangered.org"} onClick={linkOne}></But>
                                     </Col>
-                                    <Col>
-                                        <Display className="final text-center" message={"https://www.worldwildlife.org/"}></Display>
+                                    <Col className="center">
+                                        <But className="startBtn text-center" message={"https://www.worldwildlife.org/"} onClick={linkTwo}></But>
                                     </Col>
                                 </Row>
                                 <Row >

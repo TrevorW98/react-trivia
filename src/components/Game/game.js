@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import Display from '../Display/display'
 import { FetchEasy, FetchMed, FetchHard } from '../Services/dataService'
 import { Questions } from '../Questions/questions'
-import {Options} from '../Options/options';
+import { Options } from '../Options/options';
 import But from '../Button/btn'
 import {
   BrowserRouter as Router,
@@ -64,12 +64,12 @@ class App extends React.Component {
               <Container>
                 <Row >
                   <Col className={"d-flex justify-content-center mt-5"}>
-                    <Display className="timerStyle" message={"Welcome to Animal Trivia!"}/>
+                    <Display className="timerStyle" message={"Welcome to Animal Trivia!"} />
                   </Col>
                 </Row>
                 <Row>
                   <Col className={"d-flex justify-content-center mt-5"}>
-                  <Display className={"timerStyle text-center"} message={"Choose from Easy, household pet facts, Medium, exotic pet facts, or Hard, wild animal facts."}></Display>
+                    <Display className={"timerStyle text-center"} message={"Choose your difficulty below"}></Display>
                   </Col>
                 </Row>
                 <Row>
@@ -83,7 +83,7 @@ class App extends React.Component {
                     <Link to="/questions"><But onClick={asyncFunctionHard} className="startBtn" message={"Hard"}></But></Link>
                   </Col>
                   <Col className="d-flex justify-content-center mt-5">
-                    <Link to="/options"><But className="startBtn"  message={"Options"}></But></Link>
+                    <Link to="/options"><But className="startBtn" message={"Options"}></But></Link>
                   </Col>
                 </Row>
               </Container>
